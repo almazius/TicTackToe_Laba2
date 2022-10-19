@@ -22,33 +22,36 @@ void Game::newGame(QPushButton **buttons)
 
 void Game::clickOnField(QPushButton **buttons, int num)
 {
-    if(step>0)
+    if(field[num] == 0)
     {
-        buttons[num]->setText("X");
-        this->field[num]=1;
-    } else {
-        buttons[num]->setText("0");
-        this->field[num]=-1;
-    }
-    step *= -1;
-    int resCheckVictory = checkVictory();
-    if(resCheckVictory != 0)
-    {
-        QMessageBox win_window;
-        if(resCheckVictory == 1) {
-            win_window.setText("The crosses won!");
-        } else if (resCheckVictory == -1) {
-            win_window.setText("The noughts won!");
-        } else if (resCheckVictory == 2) {
-            win_window.setText("Draw");
+        if(step>0)
+        {
+            buttons[num]->setText("X");
+            this->field[num]=1;
+        } else {
+            buttons[num]->setText("0");
+            this->field[num]=-1;
         }
-        win_window.setStandardButtons(QMessageBox::Ok);
-        switch (win_window.exec()) {
-        case QMessageBox::Ok:
-            newGame(buttons);
-            break;
-        }
+        step *= -1;
+        int resCheckVictory = checkVictory();
+        if(resCheckVictory != 0)
+        {
+            QMessageBox win_window;
+            if(resCheckVictory == 1) {
+                win_window.setText("The crosses won!");
+            } else if (resCheckVictory == -1) {
+                win_window.setText("The noughts won!");
+            } else if (resCheckVictory == 2) {
+                win_window.setText("Draw");
+            }
+            win_window.setStandardButtons(QMessageBox::Ok);
+            switch (win_window.exec()) {
+            case QMessageBox::Ok:
+                newGame(buttons);
+                break;
+            }
 
+        }
     }
 }
 

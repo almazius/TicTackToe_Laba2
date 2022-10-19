@@ -21,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    //delete[] buttons; wtf???
     delete ui;
     delete game;
-    delete[] buttons;
 }
 
 
